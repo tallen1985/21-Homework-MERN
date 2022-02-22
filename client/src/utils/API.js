@@ -35,16 +35,16 @@ export const LOGIN_USER = gql`
 `;
 
 // save book data for a logged in user
-export const saveBook = (bookData, token) => {
-  return fetch("/api/users", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(bookData),
-  });
-};
+export const SAVE_BOOK = gql`
+  mutation saveBook($user: String!, $book: newBook) {
+    saveBook(user: $user, book: $book) {
+      username
+      savedBooks {
+        title
+      }
+    }
+  }
+`;
 
 // remove saved book data for a logged in user
 export const deleteBook = (bookId, token) => {
