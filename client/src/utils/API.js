@@ -1,14 +1,17 @@
 import { gql } from "@apollo/client";
 
 // route to get logged in user's info (needs the token)
-export const getMe = (token) => {
-  return fetch("/api/users/me", {
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  });
-};
+export const GET_USERS = gql`
+  query getUsers {
+    getUsers {
+      username
+      savedBooks {
+        title
+        description
+      }
+    }
+  }
+`;
 
 export const CREATE_USER = gql`
   mutation createUser($username: String!, $email: String!, $password: String!) {

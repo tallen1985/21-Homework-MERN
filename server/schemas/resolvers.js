@@ -7,11 +7,9 @@ const resolvers = {
     getUsers: async () => {
       return await User.find();
     },
-    getSingleUser: async (parent, { _id = null, username }) => {
+    getSingleUser: async (parent, { _id }) => {
       if (_id) {
         return await User.findOne({ _id });
-      } else {
-        return await User.findOne({ username: username });
       }
     },
   },
